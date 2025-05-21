@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import './App.css';
-import Router from './Router';
-import Header from './components/Header/Header';
+import Comment from './components/Comment/Comment';
 
 function App() {
 
@@ -19,8 +18,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Router />
+      <Comment />
+      {/* <Router /> */}
     </div>
   );
 }
