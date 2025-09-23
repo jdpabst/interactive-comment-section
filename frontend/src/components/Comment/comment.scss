@@ -3,9 +3,10 @@
  margin: 0 auto;
  border-radius: 7px;
  background-color: hsl(0, 100%, 100%);
- padding: 20px;
+ padding: 30px;
  display: flex;
  justify-content: space-between;
+ gap: 2rem;
 
  .comment-contents-container {
   width: 92%;
@@ -59,6 +60,36 @@
    line-height: 25px;
    color: hsl(211, 10%, 45%);
    padding-top: 15px;
+  }
+ }
+
+ .comment-actions {
+  display: none; // hidden on desktop since you already have them in header/side
+ }
+}
+
+@media (max-width: 853px) {
+ body {
+  padding: 10px;
+ }
+
+ .main-comment-container {
+  flex-direction: column;
+  width: 100%;
+
+  .comment-header .reply-bttn {
+   display: none;
+  }
+
+  .upvote-desktop {
+   display: none;
+  }
+
+  .comment-actions {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 1rem;
+   align-items: center;
   }
  }
 }

@@ -8,7 +8,7 @@
  flex-direction: column;
  align-items: center;
  gap: 15px;
- margin-right: 20px;
+ // margin-right: 20px;
 
  .plus-icon {
   height: 10px;
@@ -27,5 +27,15 @@
  .minus-icon {
   height: 3px;
   width: 10px;
+ }
+}
+
+@media (max-width: 853px) {
+ .upvote-container {
+  width: 33%;
+  height: 45px;
+  flex-direction: row;
+  gap: 1rem;
+  // padding: 15px;
  }
 }
