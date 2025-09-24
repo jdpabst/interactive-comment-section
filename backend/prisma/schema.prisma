@@ -23,3 +23,12 @@ model User {
   lastName  String?
 }
 
+model Post {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  email     String
+  firstName String?   
+  lastName  String?
+  upVote    Int
+}
