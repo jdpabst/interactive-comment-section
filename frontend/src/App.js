@@ -7,6 +7,7 @@ function App() {
 
   useEffect(() => {
     exampleApiCall();
+    getPosts();
   }, [])
 
   // example of talking to the api
@@ -15,6 +16,10 @@ function App() {
     console.log(result)
   }
 
+  async function getPosts() {
+    const result = await axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/posts`)
+    console.log(result)
+  }
 
   return (
     <div className="App">
