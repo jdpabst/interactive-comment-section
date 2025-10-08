@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Comment from './components/Comment/Comment';
 
 function App() {
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     exampleApiCall();
@@ -14,16 +15,18 @@ function App() {
   async function exampleApiCall() {
     const result = await axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/health`)
     console.log(result)
+
   }
 
   async function getPosts() {
     const result = await axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/posts`)
     console.log(result)
+    setPosts(result.data);
   }
 
   return (
     <div className="App">
-      <Comment />
+      <Comment posts={posts} />
       {/* <Router /> */}
     </div>
   );
