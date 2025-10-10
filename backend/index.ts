@@ -14,15 +14,15 @@ async function startServer() {
  app.use(express.json());
  app.use(router);
 
- app.get('/posts', async (req, res) => {
-  try {
-   const posts = await prisma.post.findMany()
-   res.json(posts)
-  } catch (error) {
-   console.error(error)
-   res.status(500).json({ error: 'Failed to retrieve posts' })
-  }
- })
+ // app.get('/posts', async (req, res) => {
+ //  try {
+ //   const posts = await prisma.post.findMany()
+ //   res.json(posts)
+ //  } catch (error) {
+ //   console.error(error)
+ //   res.status(500).json({ error: 'Failed to retrieve posts' })
+ //  }
+ // })
 
  app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

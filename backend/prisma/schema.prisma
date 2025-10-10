@@ -16,19 +16,21 @@ datasource db {
 
 model User {
   id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  email     String
-  firstName String?   
-  lastName  String?
+  firstname String
+  lastname  String
+  avatar    String?
+  comments  Comment[]
 }
 
-model Post {
+model Comment {
   id        Int       @id @default(autoincrement())
+  content   String
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  email     String
-  firstName String?   
-  lastName  String?
-  upVote    Int
+  parentId  Int?
+  parent    Comment?  @relation("Replies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("Replies")
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int
+  upvotes   Int        @default(0)
 }
+

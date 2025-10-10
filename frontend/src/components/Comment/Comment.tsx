@@ -2,9 +2,14 @@ import Upvote from '../Upvote/Upvote';
 import './comment.scss';
 
 export default function Comment({ posts }) {
- console.log(posts[0].id)
+ // console.log(posts[0].id)
 
  return (
+  // change the mentions in the comments to a different color and style even though they are hardcoded in the db
+  // const contentWithMentions = comment.content.replace(
+  // /@(\w+)/g,
+  // '<span class="text-blue-500 font-medium">@$1</span>'
+  // );
   <>
    {posts.map((post) => (
 
@@ -17,8 +22,8 @@ export default function Comment({ posts }) {
       <div className='comment-header display-flex-row'>
        <div className='user-and-comment-info display-flex-row'>
         <img src='/assets/avatars/image-amyrobson.png' />
-        <p className='user-name'>{posts.firstName} {posts.lastName}</p>
-        <p className='date-posted'>{posts.createdAt}</p>
+        <p className='user-name'>{post.firstName} {post.lastName}</p>
+        <p className='date-posted'>{post.createdAt}</p>
        </div>
        <button className='reply-bttn display-flex-row'>
         <img src='/assets/icons/icon-reply.svg' />
