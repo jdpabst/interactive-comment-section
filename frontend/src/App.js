@@ -4,12 +4,20 @@ import './App.css';
 import Comment from './components/Comment/Comment';
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     exampleApiCall();
     getPosts();
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setComments((prev) => [...prev]); // triggers re-render, no data change
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // example of talking to the api
   async function exampleApiCall() {
@@ -19,14 +27,15 @@ function App() {
   }
 
   async function getPosts() {
-    const result = await axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/posts`)
+    const result = await axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/comments`)
     console.log(result)
-    setPosts(result.data);
+    setComments(result.data);
   }
+
 
   return (
     <div className="App">
-      <Comment posts={posts} />
+      <Comment comments={comments} />
       {/* <Router /> */}
     </div>
   );

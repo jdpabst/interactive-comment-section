@@ -14,15 +14,27 @@ async function startServer() {
  app.use(express.json());
  app.use(router);
 
- // app.get('/posts', async (req, res) => {
- //  try {
- //   const posts = await prisma.post.findMany()
- //   res.json(posts)
- //  } catch (error) {
- //   console.error(error)
- //   res.status(500).json({ error: 'Failed to retrieve posts' })
- //  }
- // })
+ app.get('/comments', async (req, res) => {
+  try {
+   const comments = await prisma.comment.findMany({
+    where: { parentId: null }, // ONLY top-level comments
+    include: {
+     author: true,
+     replies: {
+      include: { author: true }
+     }
+    },
+    orderBy: { upvotes: 'desc' }
+   });
+
+
+   res.json(comments);
+  } catch (error) {
+   console.error(error);
+   res.status(500).json({ error: 'Failed to retrieve comments' });
+  }
+ });
+
 
  app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
